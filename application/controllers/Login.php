@@ -15,23 +15,26 @@ class login extends CI_Controller {
 		$this->load->view('users/login');
 	}
 
-	public function autenticacao()
+	public function autenticar()
 	{
 		$email = $this->input->post('email');
 		$senha = $this->input->post('senha');
 
-		$usuario = $this->locadora->loginUsuario($email, $senha);
+		$usuario = $this->locadora->logarUsuario($email, $senha);
+
+		print_r($usuario); exit;
 
 		if($usuario)
 		{
-			$this->session->set_userdata("usaurio logado", $usuario);
+			echo 123;
+			$this->session->set_userdata("usuario logado", $usuario);
 			$this->session->set_flashdata("success", "Logado Com Sucessso");
 		}
 		else
 		{
 			$this->session->set_flashdata("danger", "Credenciais Invalidas");
 		}
-		
+		redirect('cadastro');
 	}
 
 }

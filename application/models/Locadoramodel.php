@@ -14,7 +14,7 @@ class Locadoramodel extends CI_Model
 
     }
 
-    public function loginUsuario($email, $senha)
+    public function logarUsuario($email, $senha)
     {
       $this->db->where("email", $email);
       $this->db->where("senha", $senha);
