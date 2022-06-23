@@ -83,6 +83,7 @@
 
     function getDadosCadastro()
     {
+        var baseUrl = '<?=base_url('login')?>'
         $.post(
         base + '/logout',{
 
@@ -95,7 +96,7 @@
                 alert(data);
                 if(data == "Deslogado com sucesso")
                 {
-                    window.location.href = "login";
+                    window.location.href = baseUrl;
                 }
 
             }
