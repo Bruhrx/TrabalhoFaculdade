@@ -22,11 +22,11 @@ class login extends CI_Controller {
 
 		$usuario = $this->locadora->logarUsuario($email, $senha);
 
-		print_r($usuario); exit;
+		// print_r($usuario); exit;
 
 		if($usuario)
 		{
-			echo 123;
+			// echo 123;
 			$this->session->set_userdata("usuario logado", $usuario);
 			$this->session->set_flashdata("success", "Logado Com Sucessso");
 		}
@@ -35,6 +35,13 @@ class login extends CI_Controller {
 			$this->session->set_flashdata("danger", "Credenciais Invalidas");
 		}
 		redirect('cadastro');
+	}
+
+	public function logout()
+	{
+		$this->session->unset_userdata("usuario logado");
+		$this->session->set_flashdata('success', "Deslogado com sucesso");
+		redirect('/');
 	}
 
 }

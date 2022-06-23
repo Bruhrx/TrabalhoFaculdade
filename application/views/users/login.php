@@ -15,7 +15,7 @@
                 <p class= "alert alert-success"><?= $this->session->flashdata("success"); ?></p>
             <?php endif?>
 
-                
+
             <?php if($this->session->flashdata("danger")):?>
                 <p class= "alert alert-danger"><?= $this->session->flashdata("danger"); ?></p>
             <?php endif?>
@@ -24,9 +24,8 @@
                 <?redirect('cadastro')?>
             <?php endif ?>
 
+            <?php
 
-            <?php 
-            
                 echo form_open('login/autenticar');
 
                 echo form_label("Email", "email");
@@ -51,9 +50,11 @@
                     "type"=>"submit",
                     "content"=>"Login"
                 ));
-                
+
                 echo form_close();
             ?>
+
+            <?php anchor("login/logout", "Sair", array("class"=>"btn btn-primary"))?>
         </div>
     </div>
 
