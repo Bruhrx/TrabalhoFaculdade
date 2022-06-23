@@ -50,6 +50,8 @@
 
     function getDadosCadastro()
     {
+
+        var baseUrl = '<?=base_url('homecontroller')?>'
         $.post(
         base + '/autenticacao',{
 
@@ -61,7 +63,7 @@
                 alert(data);
                 if(data == "Usuario Logado")
                 {
-                    window.location.href = "homecontroller";
+                    window.location.href = baseUrl;
                 }
 
             }

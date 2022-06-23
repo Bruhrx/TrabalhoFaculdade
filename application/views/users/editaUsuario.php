@@ -29,25 +29,21 @@
 
     <div class="row">
         <div class="col-md-6 position-absolute top-50 start-50 translate-middle">
-            <form action="editToDo.php" method="POST">
-                <div class="form-group">
-                    <label for="id">#</label>
-                    <input id="id" name="id" class="form-control" value="<?php echo $usuario['id']; ?>" type="text" readonly></input>
-                </div>
+            <form method="POST">
                 <div class="form-group">
                     <label for="titulo">Nome</label>
-                    <input id="nome" name="nome" class="form-control" value="<?php echo $usuario['nome'];?>" type="text"></input>
+                    <input id="txtNome" name="nome" class="form-control" value="" type="text"></input>
                 </div>
                 <div class="form-group">
                     <label for="descricao">Email</label>
-                    <input id="Email" name="email" class="form-control" value="<?php echo $usuario['email'];?>" type="text"></input>
+                    <input id="txtEmail" name="email" class="form-control" value="" type="text"></input>
                 </div>
                 <div class="form-group">
                     <label for="senha">Senha</label>
-                    <input id="Senha" name="senha" class="form-control" value="<?php echo $usuario['senha'];?>" type="password"></input>
+                    <input id="txtSenha" name="senha" class="form-control" value="" type="password"></input>
                 </div>
                 <div class="form-group">
-                    <input id="btnAtualizar" class="btn btn-success" name="btnAtualizar" type="submit" value="Atualizar"></input>
+                    <input id="btnAtualizar" class="btn btn-success" name="btnAtualizar" type="button" value="Atualizar"></input>
                 </div>
             </form>
         </div>
@@ -55,4 +51,38 @@
 
 </body>
 </html>
+
+<script src = '<?=base_url('public/js/jquery-3.6.0.min.js')?>'></script>
+<script>
+    $('#txtSenha'). val()
+    $('#txtEmail').val()
+    $('#txtNome').val()
+    $('#txtId').val()
+
+    $("#btnAtualizar").click(function()
+    {
+        atualizaUsuario()
+
+        if($('#txtSenha').length >= 8)
+        {
+            redirect()
+        }
+
+    });
+
+    function atualizaUsuario()
+    {
+        $.post(
+        base + '/editarUsuario',{
+
+            email:$('#txtEmail').val(),
+            senha:$('#txtSenha').val(),
+            id:$('#txtId').val(),
+            nome:$('#txtNome').val()
+
+            }
+        );
+    }
+
+</script>
 
