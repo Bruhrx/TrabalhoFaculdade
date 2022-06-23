@@ -13,18 +13,19 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="<?= base_url(''); ?>">BlackDragons</a>
+            <a class="navbar-brand" href="<?=base_url('homecontroller');?>">BlackDragons</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-link" href="<?= base_url('listaCliente'); ?>">Listagem dos clientes</a>
-                    <a class="nav-link" href="<?= base_url('cadastro'); ?>">Cadastro</a>
-                    <a class="nav-link" href="<?= base_url('listaFilmes'); ?>">Listagem dos Filmes</a>
-                    <a class="nav-link" href="<?= base_url('cadastroFilme') ?>">Cadastro de Filmes</a>
-                    <a class="nav-link" href="<?= base_url('login'); ?>">Login</a>
-                </div>
+            <div class="navbar-nav">
+                <a class="nav-link" href="<?=base_url('listaCliente');?>">Listagem dos clientes</a>
+                <a class="nav-link" href="<?=base_url('cadastro');?>">Cadastro</a>
+                <a class="nav-link" href="<?=base_url('listaFilmes');?>">Listagem dos Filmes</a>
+                <a class="nav-link" href="<?=base_url('cadastroFilme')?>">Cadastro de Filmes</a>
+                <a class="nav-link" href="<?=base_url('login');?>">Login</a>
+                <input id="btnLogout" name="btnLogin" type="button" class="btn btn-primary" value="Sair"></input>
+            </div>
             </div>
         </div>
     </nav>
@@ -54,22 +55,6 @@
 
 <script>
 
-    // $("#btnDelete").click(function(){
-
-    //     deletarPlataforma(id)
-
-    // });
-
-
-    // function getId()
-    // {
-    //     $.post(
-    //     base + '/cadastraUsuario',{
-    //         id: $('#btnDelete').val()
-    //         }
-    //     );
-    // }
-
     function deletarPlataforma(id)
     {
         var myUrl = 'listafilmes/deleteFilme/'+id
@@ -81,4 +66,39 @@
             return;
         }
     }
+
+    var base = '<?=base_url('login')?>'
+
+    $("#btnLogout").click(function()
+    {
+        getDadosCadastro()
+
+        if($('#txtSenha').length >= 8)
+        {
+            redirect()
+        }
+
+    });
+
+    function getDadosCadastro()
+    {
+        $.post(
+        base + '/logout',{
+
+            email:$('#txtEmail').val(),
+            senha:$('#txtSenha').val()
+
+            },function(data)
+            {
+
+                alert(data);
+                if(data == "Deslogado com sucesso")
+                {
+                    window.location.href = "login";
+                }
+
+            }
+        );
+    }
+
 </script>

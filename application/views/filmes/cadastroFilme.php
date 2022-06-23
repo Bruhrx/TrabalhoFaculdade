@@ -12,7 +12,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="<?=base_url('');?>">BlackDragons</a>
+            <a class="navbar-brand" href="<?=base_url('homecontroller');?>">BlackDragons</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -23,6 +23,7 @@
                 <a class="nav-link" href="<?=base_url('listaFilmes');?>">Listagem dos Filmes</a>
                 <a class="nav-link" href="<?=base_url('cadastroFilme')?>">Cadastro de Filmes</a>
                 <a class="nav-link" href="<?=base_url('login');?>">Login</a>
+                <input id="btnLogout" name="btnLogin" type="button" class="btn btn-primary" value="Sair"></input>
             </div>
             </div>
         </div>
@@ -52,7 +53,7 @@
 
 <script src = 'public/js/jquery-3.6.0.min.js'></script>
 <script>
-    var base = '<?=base_url('cadastroFilme')?>'
+    var basef = '<?=base_url('cadastroFilme')?>'
 
     $('#txtTitulo').val('Ultimate Go Horse Project');
     $('#txtGenero').val('Genero GO HORSE');
@@ -66,7 +67,7 @@
     function getDadosCadastro()
     {
         $.post(
-        base + '/getFilmes',{
+        basef + '/getFilmes',{
             titulo: $('#txtTitulo').val(),
             genero: $('#txtGenero').val(),
             }
@@ -78,4 +79,39 @@
         // alert(123);
         window.location.replace('<?=base_url('listaFilmes')?>')
     }
+
+    var base = '<?=base_url('login')?>'
+
+    $("#btnLogout").click(function()
+    {
+        getDadosCadastro()
+
+        if($('#txtSenha').length >= 8)
+        {
+            redirect()
+        }
+
+    });
+
+    function getDadosCadastro()
+    {
+        $.post(
+        base + '/logout',{
+
+            email:$('#txtEmail').val(),
+            senha:$('#txtSenha').val()
+
+            },function(data)
+            {
+
+                alert(data);
+                if(data == "Deslogado com sucesso")
+                {
+                    window.location.href = "login";
+                }
+
+            }
+        );
+    }
+
 </script>
