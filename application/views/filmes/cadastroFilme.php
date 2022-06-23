@@ -84,7 +84,7 @@
 
     $("#btnLogout").click(function()
     {
-        getDadosCadastro()
+        logout()
 
         if($('#txtSenha').length >= 8)
         {
@@ -93,7 +93,7 @@
 
     });
 
-    function getDadosCadastro()
+    function logout()
     {
         var baseUrl = '<?=base_url('login')?>'
         $.post(
